@@ -1,0 +1,76 @@
+<link rel='stylesheet' href='/stylesheets/style.css' />
+<div class="wrapper">
+    <div class="zombie-preview">
+        <img src="/images/zombieparts/head-7@2x.png" class="head" alt="">
+        <img src="/images/zombieparts/eyes-4@2x.png" class="eyes" alt="">
+        <img src="/images/zombieparts/mouth-1@2x.png" class="mouth" alt="">
+        <img src="/images/zombieparts/shirt-4@2x.png" class="shirt" alt="">
+        <img src="/images/zombieparts/left-upper-arm-1@2x.png" class="left-upper" alt="">
+        <img src="/images/zombieparts/right-upper-arm-1@2x.png" class="right-upper" alt="">
+        <img src="/images/zombieparts/left-forearm-1@2x.png" class="left-forearm" alt="">
+        <img src="/images/zombieparts/right-forearm-1@2x.png" class="right-forearm" alt="">
+        <img src="/images/zombieparts/hand1-1@2x.png" class="hand1" alt="">
+        <img src="/images/zombieparts/hand-2-1@2x.png" class="hand2" alt="">
+        <img src="/images/zombieparts/catlegs.png" class="catlegs" alt="">
+        <div class="zombie-name">
+            <div class="name">Your's Zombie-Name</div>
+            <hr>
+            <div class="level">Level</div>
+        </div>
+    </div>
+    <div class="zombie-create">
+        <div class="form-group">
+            <label for="usr">Zombie Name :</label>
+            <input type="text" class="form-control" id="zombieName" placeholder="Typing Zombie-Name">
+            <button type="button" onclick="btCreateZombie();" class="btn btn-success btn-block">Create Name</button>
+        </div>
+    </div>
+</div>
+<script>
+
+    function createRandomZombie(name, account, contract, hashReceipt, hashError) {
+        contract.methods.createRandomZombie(name).send({ from: account })
+            .on("receipt", function (receipt) {
+                hashReceipt(receipt);
+            })
+            .on("error", function (error) {
+                hashError(error);
+            });
+    }
+    function btCreateZombie() {
+        var flag = false;
+        var name = document.getElementById('zombieName').value;
+        var input = document.getElementById("zombieName");
+        if (name.length < 6) {
+            flag = true;
+            input.placeholder = "Name very short , can > 6";
+        }
+        var web3js = new Web3(web3.currentProvider);
+        var cryptZombies = new web3js.eth.Contract(abi, contractAdress, {
+            from: address1,
+            data: data
+        });
+
+        var account = window.localStorage.getItem("account");
+
+        createRandomZombie(name, account, cryptZombies, (receipt) => {
+            console.log(receipt.status);
+            if(receipt.status == true) {
+                window.alert("Your zombie has create with name : "+ name);
+                window.location.href = "/zombie-details";
+            }
+        }, (error)=> {  
+            console.log(error);
+            if(error) {
+                window.alert("Cant not create any zombie");
+                window.location.href = "/create-random-zombie";
+            }
+        });
+        console.log("addd", account);
+        console.log("Zombie name", name);
+    }
+
+
+
+
+</script>

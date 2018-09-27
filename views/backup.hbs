@@ -1,0 +1,117 @@
+ <script>
+        var cryptZombies;
+        var flag = false;
+        var account ;
+        console.log('jquery',window.$);
+        function startApp(owner) {
+            cryptZombies = new web3js.eth.Contract(abi, contractAdress, {
+                    from: address1,
+                    data: data
+            });
+            getZombiesByOwner(owner).then(displayZombies);
+        }
+
+        function displayZombies(ids) {
+            $("#zombies").empty();
+            console.log("26 length", ids.length);
+            if(ids.length == 0) {
+                console.log("You don't have zoombie");
+            }
+            for(id of ids) {
+                getZombieDetails(id).then(function(zombie) {
+                $("#zombies").append(`<div class="zombie">
+                    <ul>
+                        <li>Name: ${zombie.name}</li>
+                        <li>DNA: ${zombie.dna}</li>
+                        <li>Level: ${zombie.level}</li>
+                        <li>Wins: ${zombie.winCount}</li>
+                        <li>Losses: ${zombie.lossCount}</li>
+                        <li>Ready Time: ${zombie.readyTime}</li>
+                    </ul>
+                    </div>`);
+                });
+            }
+        }
+
+        function getZombieDetails(id) {
+            return cryptZombies.methods.zombies(id).call();
+        }
+
+        function zombieToOwner(id) {
+            return cryptZombies.methods.zombieToOwner(id).call();
+        }
+
+        function getZombiesByOwner(owner) {
+            return cryptZombies.methods.getZombiesByOwner(owner).call();
+        }
+
+        ///start window.addevent
+        window.addEventListener('load', function() {
+
+            if(typeof web3 !== 'undefined') {
+                web3js = new Web3(web3.currentProvider);
+
+
+            web3.version.getNetwork((err, netId) => {
+                switch (netId) {
+                case "1":
+                console.log('This is mainnet');
+                flag = true;
+                break;
+                case "2":
+                console.log('This is the deprecated Morden test network.');
+                flag = true;
+                break;
+                case "3":
+                console.log('This is the ropsten test network.');
+                break;
+                case "4":
+                console.log('This is the Rinkeby test network.');
+                flag = true;
+                break;
+                case "42":
+                console.log('This is the Kovan test network.');
+                flag = true;    
+                break;
+                default:
+                console.log('This is an unknown network.');
+                flag = false;
+            }   
+                web3.currentProvider.publicConfigStore.on("update", function(result) {
+                   
+                    
+                    if(result.selectedAddress == undefined) {
+                        flag = true;
+                        console.log("47", "You can login");
+                    } else {
+                        console.log("49", "Ok already login");
+                    }
+                    console.log("54",account)
+                    console.log(flag);
+                    if(flag == false) {
+                         if(account !== result.selectedAddress) {
+                            account = result.selectedAddress;
+                            console.log("Startapp");
+                            startApp(account);      
+                        }        
+                    }
+                });
+
+            }); 
+
+   
+
+
+
+
+            } else {
+                console.log("You can setup metamask");
+            }
+
+
+        //end window.addevent
+        });
+
+
+
+    </script>
