@@ -22,70 +22,64 @@
 
     <script>
         var flag = false;
-       
+        var account;
+        function startApp() {
+
+
+            setInterval(function () {
+                web3.eth.getAccounts(function (err, res) {
+                    if (localStorage.getItem('account') === null) {
+                        localStorage.setItem('account', res[0]);
+                        console.log("null acc", localStorage.getItem('account'));
+                    } else {
+                        if (localStorage.getItem('account') !== res[0]) {
+                            localStorage.setItem('account', res[0]);
+                            console.log("change acc", localStorage.getItem('account'));
+                        }
+                    }
+                });
+            }, 100);
+        }
         ///start window.addevent
         window.addEventListener('load', function () {
 
             if (typeof web3 !== 'undefined') {
-                var  web3js = new Web3(web3.currentProvider);
-
-
-                web3.version.getNetwork((err, netId) => {
-                    switch (netId) {
-                        case "1":
-                            console.log('This is mainnet');
-                            flag = true;
-                            window.location.href = "/choose-ropsten";
-                            break;
-                        case "2":
-                            console.log('This is the deprecated Morden test network.');
-                            flag = true;
-                            window.location.href = "/choose-ropsten";
-                            break;
-                        case "3":
-                            console.log('This is the ropsten test network.');
-                            break;
-                        case "4":
-                            console.log('This is the Rinkeby test network.');
-                            flag = true;
-                            window.location.href = "/choose-ropsten";
-                            break;
-                        case "42":
-                            console.log('This is the Kovan test network.');
-                            flag = true;
-                            window.location.href = "/choose-ropsten";
-                            break;
-                        default:
-                            console.log('This is an unknown network.');
-                            window.location.href = "/choose-ropsten";
-                            flag = true;
-                    }
-                    web3.currentProvider.publicConfigStore.on("update", function (result) {
-
-
-                        if (result.selectedAddress == undefined) {
-                            flag = true;
-                            console.log("47", "You can login");
-                            window.location.href = "/login-metamask";
-                        } else {
-                            window.localStorage.setItem('isLogin', result.selectedAddress);
-                            console.log("49", "Ok already login");
-                            
-                            if (flag == false) {
-                                if (localStorage.getItem('account') !== result.selectedAddress) {
-                    
-                                    window.location.href = "/zombie-details";
-                                    window.localStorage.setItem('account', result.selectedAddress);
-                                }
-                            }
-                           
+                var web3js = new Web3(web3.currentProvider);
+                startApp()
+                setInterval(function () {
+                    web3.version.getNetwork((err, netId) => {
+                        switch (netId) {
+                            case "1":
+                                console.log('This is mainnet');
+                                flag = true;
+                                window.location.href = "/choose-ropsten";
+                                break;
+                            case "2":
+                                console.log('This is the deprecated Morden test network.');
+                                flag = true;
+                                window.location.href = "/choose-ropsten";
+                                break;
+                            case "3":
+                                console.log('This is the ropsten test network.');
+                                break;
+                            case "4":
+                                console.log('This is the Rinkeby test network.');
+                                flag = true;
+                                window.location.href = "/choose-ropsten";
+                                break;
+                            case "42":
+                                console.log('This is the Kovan test network.');
+                                flag = true;
+                                window.location.href = "/choose-ropsten";
+                                break;
+                            default:
+                                console.log('This is an unknown network.');
+                                window.location.href = "/choose-ropsten";
+                                flag = true;
                         }
+
                     });
-
-                });
-
-
-
+                }, 3000);
 
 
 

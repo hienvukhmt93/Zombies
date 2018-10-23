@@ -1,5 +1,76 @@
 <link rel='stylesheet' href='/stylesheets/style.css' />
-<div class="wrapper">
+<svg class="container" id="loading" class="lds-spinner" width="200px" height="200px" xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" style="background: none;">
+    <g transform="rotate(0 50 50)">
+        <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#fcb711">
+            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.9166666666666666s"
+                repeatCount="indefinite"></animate>
+        </rect>
+    </g>
+    <g transform="rotate(30 50 50)">
+        <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#fcb711">
+            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.8333333333333334s"
+                repeatCount="indefinite"></animate>
+        </rect>
+    </g>
+    <g transform="rotate(60 50 50)">
+        <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#fcb711">
+            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.75s" repeatCount="indefinite"></animate>
+        </rect>
+    </g>
+    <g transform="rotate(90 50 50)">
+        <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#fcb711">
+            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.6666666666666666s"
+                repeatCount="indefinite"></animate>
+        </rect>
+    </g>
+    <g transform="rotate(120 50 50)">
+        <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#fcb711">
+            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.5833333333333334s"
+                repeatCount="indefinite"></animate>
+        </rect>
+    </g>
+    <g transform="rotate(150 50 50)">
+        <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#fcb711">
+            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.5s" repeatCount="indefinite"></animate>
+        </rect>
+    </g>
+    <g transform="rotate(180 50 50)">
+        <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#fcb711">
+            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.4166666666666667s"
+                repeatCount="indefinite"></animate>
+        </rect>
+    </g>
+    <g transform="rotate(210 50 50)">
+        <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#fcb711">
+            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.3333333333333333s"
+                repeatCount="indefinite"></animate>
+        </rect>
+    </g>
+    <g transform="rotate(240 50 50)">
+        <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#fcb711">
+            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.25s" repeatCount="indefinite"></animate>
+        </rect>
+    </g>
+    <g transform="rotate(270 50 50)">
+        <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#fcb711">
+            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.16666666666666666s"
+                repeatCount="indefinite"></animate>
+        </rect>
+    </g>
+    <g transform="rotate(300 50 50)">
+        <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#fcb711">
+            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.08333333333333333s"
+                repeatCount="indefinite"></animate>
+        </rect>
+    </g>
+    <g transform="rotate(330 50 50)">
+        <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#fcb711">
+            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="0s" repeatCount="indefinite"></animate>
+        </rect>
+    </g>
+</svg>
+<div id="content" class="wrapper">
     <div class="zombie-preview">
         <img src="/images/zombieparts/head-7@2x.png" class="head" alt="">
         <img src="/images/zombieparts/eyes-4@2x.png" class="eyes" alt="">
@@ -27,6 +98,40 @@
     </div>
 </div>
 <script>
+    function show() {
+        document.getElementById("loading").style.display = "block";
+        document.getElementById("content").style.display = "none";
+    }
+    document.addEventListener('DOMContentLoaded', function () {
+        show();
+        setTimeout(function () {
+            document.getElementById("loading").style.display = "none";
+            document.getElementById("content").style.display = "block";
+        }, 2000);
+    }, false);
+
+    window.addEventListener('load', function () {
+        var account = localStorage.getItem('account');
+        var web3js = new Web3(web3.currentProvider);
+        var cryptZombies = new web3js.eth.Contract(abi, contractAdress, {
+            from: address1,
+            data: data
+        });
+        getZombiesByOwner(account, cryptZombies, (hash) => {
+            console.log(hash.length);
+            if (hash.length > 0) {
+                window.location.href = "/zombie-details";
+            }
+        });
+        cryptZombies.events.NewZombie()
+            .on("data", function (event) {
+                console.log(event);
+                let zombie = event.returnValues;
+                // We can access this event's 3 return values on the `event.returnValues` object:
+                console.log("A new zombie was born!", zombie.zombieId, zombie.name, zombie.dna);
+                window.location.href = "/zombie-details";
+            }).on("error", console.error);
+    })
 
     function createRandomZombie(name, account, contract, hashReceipt, hashError) {
         contract.methods.createRandomZombie(name).send({ from: account })
@@ -36,7 +141,22 @@
             .on("error", function (error) {
                 hashError(error);
             });
+        
     }
+
+    function getZombiesByOwner(owner, cryptoZombies, hash) {
+        cryptoZombies.methods.getZombiesByOwner(owner).call(function (err, result) {
+
+            hash(result);
+        });
+    }
+
+    function getZombieDetails(id, cryptoZombies, hash) {
+        cryptoZombies.methods.zombies(id).call(function (err, result) {
+            hash(result);
+        });
+    }
+
     function btCreateZombie() {
         var flag = false;
         var name = document.getElementById('zombieName').value;
@@ -51,23 +171,10 @@
             data: data
         });
 
-        var account = window.localStorage.getItem("account");
-
+        var account = localStorage.getItem('account');
         createRandomZombie(name, account, cryptZombies, (receipt) => {
-            console.log(receipt.status);
-            if(receipt.status == true) {
-                window.alert("Your zombie has create with name : "+ name);
-                window.location.href = "/zombie-details";
-            }
-        }, (error)=> {  
-            console.log(error);
-            if(error) {
-                window.alert("Cant not create any zombie");
-                window.location.href = "/create-random-zombie";
-            }
+        }, (error) => {
         });
-        console.log("addd", account);
-        console.log("Zombie name", name);
     }
 
 

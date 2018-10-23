@@ -1,7 +1,78 @@
 <link rel='stylesheet' href='/stylesheets/style-attack.css' />
-<div class="wrapper">
-    <div class="zombie-preview">
-        <img id="" src="/images/zombieparts/head-1@2x.png" class="head" alt="">
+<svg class="container" id="loading" class="lds-spinner" width="200px" height="200px" xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" style="background: none;">
+    <g transform="rotate(0 50 50)">
+        <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#fcb711">
+            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.9166666666666666s"
+                repeatCount="indefinite"></animate>
+        </rect>
+    </g>
+    <g transform="rotate(30 50 50)">
+        <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#fcb711">
+            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.8333333333333334s"
+                repeatCount="indefinite"></animate>
+        </rect>
+    </g>
+    <g transform="rotate(60 50 50)">
+        <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#fcb711">
+            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.75s" repeatCount="indefinite"></animate>
+        </rect>
+    </g>
+    <g transform="rotate(90 50 50)">
+        <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#fcb711">
+            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.6666666666666666s"
+                repeatCount="indefinite"></animate>
+        </rect>
+    </g>
+    <g transform="rotate(120 50 50)">
+        <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#fcb711">
+            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.5833333333333334s"
+                repeatCount="indefinite"></animate>
+        </rect>
+    </g>
+    <g transform="rotate(150 50 50)">
+        <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#fcb711">
+            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.5s" repeatCount="indefinite"></animate>
+        </rect>
+    </g>
+    <g transform="rotate(180 50 50)">
+        <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#fcb711">
+            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.4166666666666667s"
+                repeatCount="indefinite"></animate>
+        </rect>
+    </g>
+    <g transform="rotate(210 50 50)">
+        <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#fcb711">
+            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.3333333333333333s"
+                repeatCount="indefinite"></animate>
+        </rect>
+    </g>
+    <g transform="rotate(240 50 50)">
+        <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#fcb711">
+            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.25s" repeatCount="indefinite"></animate>
+        </rect>
+    </g>
+    <g transform="rotate(270 50 50)">
+        <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#fcb711">
+            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.16666666666666666s"
+                repeatCount="indefinite"></animate>
+        </rect>
+    </g>
+    <g transform="rotate(300 50 50)">
+        <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#fcb711">
+            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.08333333333333333s"
+                repeatCount="indefinite"></animate>
+        </rect>
+    </g>
+    <g transform="rotate(330 50 50)">
+        <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#fcb711">
+            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="0s" repeatCount="indefinite"></animate>
+        </rect>
+    </g>
+</svg>
+<div id="content" class="wrapper">
+    <div id="1" onclick="clickTarget(this.id);" class="zombie-preview">
+        <img src="/images/zombieparts/head-1@2x.png" class="head" alt="">
         <img src="/images/zombieparts/eyes-1@2x.png" class="eyes" alt="">
         <img src="/images/zombieparts/mouth-1@2x.png" class="mouth" alt="">
         <img src="/images/zombieparts/shirt-1@2x.png" class="shirt" alt="">
@@ -18,7 +89,7 @@
             <div class="level">Level 1</div>
         </div>
     </div>
-    <div class="zombie-preview">
+    <div id="2" onclick="clickTarget(this.id);" class="zombie-preview">
         <img src="/images/zombieparts/head-2@2x.png" class="head" alt="">
         <img src="/images/zombieparts/eyes-2@2x.png" class="eyes" alt="">
         <img src="/images/zombieparts/mouth-2@2x.png" class="mouth" alt="">
@@ -36,7 +107,7 @@
             <div class="level">Level 2</div>
         </div>
     </div>
-    <div class="zombie-preview">
+    <div id="3" onclick="clickTarget(this.id);" class="zombie-preview">
         <img src="/images/zombieparts/head-3@2x.png" class="head" alt="">
         <img src="/images/zombieparts/eyes-3@2x.png" class="eyes" alt="">
         <img src="/images/zombieparts/mouth-1@2x.png" class="mouth" alt="">
@@ -54,7 +125,7 @@
             <div class="level">Level 2</div>
         </div>
     </div>
-    <div class="zombie-preview">
+    <div id="4" onclick="clickTarget(this.id);" class="zombie-preview">
         <img src="/images/zombieparts/head-4@2x.png" class="head" alt="">
         <img src="/images/zombieparts/eyes-4@2x.png" class="eyes" alt="">
         <img src="/images/zombieparts/mouth-2@2x.png" class="mouth" alt="">
@@ -67,9 +138,9 @@
         <img src="/images/zombieparts/hand-2-1@2x.png" class="hand2" alt="">
         <img src="/images/zombieparts/catlegs.png" class="catlegs" alt="">
         <div class="zombie-name">
-            <div class="name">Queen of Pain</div>
+            <div class="name" id="nameid">Queen of Pain</div>
             <hr>
-            <div class="level">Level 2</div>
+            <div class="level" id="levelid">Level 2</div>
         </div>
     </div>
     <div class="hrrr"></div>
@@ -94,7 +165,67 @@
         </div>
     </div>
 </div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" class="container" id="exampleModalLongTitle">Zombies</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="modal-body" class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button class="container" type="button" class="btn btn-primary">Attack</button>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
+    function clickTarget(id) {
+        $('#modal-body').empty();
+        var ids = id;
+        var name = document.getElementById(id).getElementsByTagName('div')[1].innerHTML;
+        var level = document.getElementById(id).getElementsByTagName('div')[2].innerHTML;
+        $("#" + id).attr('data-toggle', "modal");
+        $("#" + id).attr('data-target', "#exampleModalCenter");
+        $('#modal-body').append(`
+            <div  class="zombie-preview">
+        <img src="/images/zombieparts/head-${ids}@2x.png" class="head" alt="">
+        <img src="/images/zombieparts/eyes-${ids}@2x.png" class="eyes" alt="">
+        <img src="/images/zombieparts/mouth-2@2x.png" class="mouth" alt="">
+        <img src="/images/zombieparts/shirt-${ids}@2x.png" class="shirt" alt="">
+        <img src="/images/zombieparts/left-upper-arm-1@2x.png" class="left-upper" alt="">
+        <img src="/images/zombieparts/right-upper-arm-1@2x.png" class="right-upper" alt="">
+        <img src="/images/zombieparts/left-forearm-1@2x.png" class="left-forearm" alt="">
+        <img src="/images/zombieparts/right-forearm-1@2x.png" class="right-forearm" alt="">
+        <img src="/images/zombieparts/hand1-1@2x.png" class="hand1" alt="">
+        <img src="/images/zombieparts/hand-2-1@2x.png" class="hand2" alt="">
+        <img src="/images/zombieparts/catlegs.png" class="catlegs" alt="">
+        <div class="zombie-name">
+            <div class="name" >${name}</div>
+            <hr>
+            <div class="level">${level}</div>
+        </div>
+        </div>
+        `);
+    }
+    function show() {
+        document.getElementById("loading").style.display = "block";
+        document.getElementById("content").style.display = "none";
+    }
+    document.addEventListener('DOMContentLoaded', function () {
+        show();
+        setTimeout(function () {
+            document.getElementById("loading").style.display = "none";
+            document.getElementById("content").style.display = "block";
+        }, 2000);
+    }, false);
+
     window.addEventListener('load', function () {
         var web3js = new Web3(web3.currentProvider);
         var cryptZombies = new web3js.eth.Contract(abi, contractAdress, {
@@ -103,9 +234,10 @@
         });
 
         var account = window.localStorage.getItem('account');
-        console.log("40", account);
-
         getZombiesByOwner(account, cryptZombies, (hash) => {
+            if (hash.length == 0) {
+                window.location.href = "/create-random-zombie"
+            }
             displayZombies(hash, cryptZombies);
 
         });
@@ -115,8 +247,6 @@
         for (id of ids) {
             // Look up zombie details from our contract. Returns a `zombie` objec
             getZombieDetails(id, cryptoZombies, (hash) => {
-                console.log("52", hash);
-                console.log("54", hash.dna);
                 var result = hash.dna;
                 var head = (result.substring(0, 2) % 7) + 1;
                 var eyes = (result.substring(2, 4) % 11) + 1;
